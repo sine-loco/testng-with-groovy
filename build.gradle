@@ -2,3 +2,21 @@ plugins {
     id 'java'
     id 'groovy'
 }
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    jcenter()
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation (
+            'org.testng:testng:6.14.3',
+            'org.codehaus.groovy:groovy:2.4.15'
+
+    )
+    
+}

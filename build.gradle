@@ -13,10 +13,34 @@ repositories {
 }
 
 dependencies {
+    implementation (
+            'org.apache.logging.log4j:log4j-core:2.11.0'  ,
+            'org.apache.logging.log4j:log4j-api:2.11.0',
+            'com.lmax:disruptor:3.4.2',
+
+            'com.fasterxml.jackson.core:jackson-databind:2.9.5',
+            'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.9.5',
+
+
+    )
+
     testImplementation (
             'org.testng:testng:6.14.3',
             'org.codehaus.groovy:groovy:2.4.15'
 
     )
+}
+
+test {
+    useTestNG()
+
+    testLogging.showStandardStreams = true
     
+    beforeTest { descriptor ->
+        logger.lifecycle( 'Running test: ' + descriptor )
+    }
+
+    onOutput { descriptor, event ->
+        logger.lifecycle( 'Test: ' + descriptor + ' produced standard out/err: ' + event.message )
+    }
 }

@@ -1,0 +1,31 @@
+Configuration:
+  status: warn
+  name: YAMLConfigTest
+
+  properties:
+    property:
+      name: filename
+      value: target/test-yaml.log
+
+  thresholdFilter:
+    level: debug
+
+  appenders:
+    Console:
+      name: STDOUT
+      PatternLayout:
+        Pattern: "%m%n"
+
+  Loggers:
+    logger:
+      -
+        name: ru.snm.misc.testng_with_groovy
+        level: debug
+        additivity: false
+        appenderRef:
+          ref: STDOUT
+
+    Root:
+      level: error
+      appenderRef:
+        ref: STDOUT
